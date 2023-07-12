@@ -1,38 +1,45 @@
 package com.sparta.blog.controller;
 
-import com.sparta.blog.dto.ApiResult;
-import com.sparta.blog.dto.LoginRequestDto;
-import com.sparta.blog.dto.SignupRequestDto;
-import com.sparta.blog.entity.User;
+import com.sparta.blog.dto.UserRequestDto;
+import com.sparta.blog.result.ApiResponse;
 import com.sparta.blog.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Validated
+import java.util.List;
+
+@Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users")
+@RequestMapping("/api/auth")
 public class UserController {
 
     private final UserService userService;
 
-    // 회원가입 API
     @PostMapping("/signup")
-    public ApiResult signup(@Valid @RequestBody SignupRequestDto signupRequestDto) {
-        User user = userService.signup(signupRequestDto);
-        return new ApiResult("회원가입 성공", HttpStatus.OK.value());
-    }
+    public ResponseEntity<ApiResponse> signup(@RequestBody @Valid UserRequestDto.SignupRequestDto requestDto, BindingResult bindingResult) {
+        ApiResponse apiResponse = new ApiResponse();
 
+        // Validation 예외처리
+        List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+        if(fieldErrors.size() > 0) {
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                log.error(fieldError.getField() + " 필드 : " + fieldError.getDefaultMessage());
+            }
+            apiResponse.setStatusCode(404);
+            apiResponse.setMessage("회원가입 실패!!");
+            return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
+        }
 
-    // 로그인 API
-    @ResponseBody
-    @PostMapping("/login")
-    public ApiResult login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response) {
-        String token = userService.login(loginRequestDto, response);
-        return new ApiResult("로그인 성공", HttpStatus.OK.value());
+        return userService.signup(requestDto);
     }
 }

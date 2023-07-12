@@ -2,50 +2,52 @@ package com.sparta.blog.controller;
 
 import com.sparta.blog.dto.BlogRequestDto;
 import com.sparta.blog.dto.BlogResponseDto;
-import com.sparta.blog.dto.ApiResult;
+import com.sparta.blog.result.ApiResponse;
+import com.sparta.blog.security.UserDetailsImpl;
 import com.sparta.blog.service.BlogService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api")
-public class BlogController {
+@Slf4j
+@RequiredArgsConstructor
 
+public class BlogController {
     private final BlogService blogService;
 
-    // 게시글 작성 API
-    @PostMapping("/logs")
-    public BlogResponseDto createLog(@RequestBody BlogRequestDto requestDto, HttpServletRequest request) {
-        return blogService.createLog(requestDto, request);
-    }
-
-    // 게시글 전체 조회 API
     @GetMapping("/logs")
-    public List<BlogResponseDto> getLogs() {
-        return blogService.getLogs();
+    public List<BlogResponseDto.ReadResponseDto> getBlogs(){
+        return blogService.getBlogs();
     }
 
-    // 게시글 선택 조회 API
-    @GetMapping("/logs/{id}")
-    public BlogResponseDto getLog(@PathVariable Long id) {
-        return blogService.getLog(id);
+    @PostMapping("/logs")
+    public BlogResponseDto.CommonResponseDto createBlog(@RequestBody BlogRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return blogService.createBlog(requestDto, userDetails.getUser());
     }
 
-    // 게시글 선택 수정 API
+    @GetMapping("/logs/{id}")       // 튜터님 피드백: 메소드명으로 선택조회를 유추할 수 있음, API URI convention에 따라 복수 사용
+    public BlogResponseDto.ReadResponseDto getBlog(@PathVariable Long id){
+        return blogService.getBlog(id);
+    }
+
+
     @PutMapping("/logs/{id}")
-    public BlogResponseDto updateLog(@PathVariable Long id, @RequestBody BlogRequestDto requestDto, HttpServletRequest request) {
-        return blogService.updateLog(id, requestDto, request);
+    public BlogResponseDto.ReadResponseDto updateBlog(
+            @PathVariable Long id, @RequestBody BlogRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails)
+    {
+        return blogService.updateBlog(id, requestDto, userDetails.getUser());
     }
 
-    // 게시글 선택 삭제 API
     @DeleteMapping("/logs/{id}")
-    public ApiResult deleteLog(@PathVariable Long id, HttpServletRequest request) {
-        blogService.deleteLog(id, request);
-        return new ApiResult("게시글 삭제 성공", HttpStatus.OK.value());
+    public ResponseEntity<ApiResponse> deleteBlog(
+            @PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails)
+    {
+        return blogService.deleteBlog(id, userDetails.getUser());
     }
 }
