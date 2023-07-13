@@ -37,7 +37,7 @@ public class UserController {
             }
             apiResponse.setStatusCode(404);
             apiResponse.setMessage("회원가입 실패!!");
-            return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
         }
 
         return userService.signup(requestDto);

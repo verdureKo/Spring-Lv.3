@@ -26,11 +26,11 @@ public class Blog extends Timestamped{
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)  // Lazy인 경우 @Transaction(read=only) 을 조회에도 거는 겁니까?
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "blog", cascade = CascadeType.REMOVE)    // 참조 무결성과 Cascade 옵션
+    @OneToMany(mappedBy = "blog", cascade = CascadeType.REMOVE)    // 참조 무결성 Cascade 옵션
     @OrderBy("id desc") // 내림차순 정렬 옵션
     private List<Comment> commentList = new ArrayList<>();
 

@@ -50,6 +50,16 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String token = jwtUtil.createToken(username, role);
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, token);
+        log.info("로그인 성공!!");
+        response.setStatus(200);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8"); // UTF-8 설정 추가
+        try {
+            String json = new ObjectMapper().writeValueAsString(new ApiResponse(200, "로그인 성공!!"));
+            response.getWriter().write(json);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
     }
 
     @Override
@@ -57,6 +67,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         log.info("로그인 실패!!");
         response.setStatus(400);
         response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8"); // UTF-8 설정 추가
         try {
             String json = new ObjectMapper().writeValueAsString(new ApiResponse(400, "회원을 찾을 수 없습니다."));
             response.getWriter().write(json);

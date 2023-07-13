@@ -30,7 +30,7 @@ Goal:  "회원가입, 로그인 기능이 추가된 나만의 항해 블로그 �
     - 회원 권한 부여하기(ADMIN, USER) - ADMIN 회원은 모든 글 수정삭제 가능
    -> `UserRoleEnum.class` 활용 접근제어매니저에 의존해 권한부여
    
-   <img src="./res/회원_관리자_로그인.png" width="750" alt="회원가입">
+   <img src="asset/회원_관리자_로그인.png" width="750" alt="회원가입">
 
 2. 로그인 API
     - username, password를 Client에서 전달받기
@@ -38,7 +38,11 @@ Goal:  "회원가입, 로그인 기능이 추가된 나만의 항해 블로그 �
     - 로그인 성공 시, 로그인에 성공한 유저의 정보와 JWT를 활용하여 토큰을 발급하고, 
     발급한 토큰을 Header에 추가하고 성공했다는 메시지, 상태코드 와 함께 Client에 반환하기
 
-   <img src="./res/로그인_관리자.png" width="750" alt="로그인">
+   <img src="asset/로그인_관리자.png" width="750" alt="로그인">
+
+   - 앞서 처리한 반환 값이 내마음 같아서 처리하지 못했다가 UTF-8 설정 코드를 찾아 추가하였다.  
+   
+   <img src="asset/로그인성공반환.png" width="750" alt="로그인">
    
 3. 댓글 작성 API
    - ~~토큰을 검사하여, 유효한 토큰일 경우에만 댓글 작성 가능~~

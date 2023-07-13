@@ -34,7 +34,7 @@ public class UserService {
         if (checkUsername.isPresent()) {
             apiResponse.setStatusCode(400);
             apiResponse.setMessage("중복된 username 입니다.");
-            return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
         }
 
         UserRoleEnum role = UserRoleEnum.USER;
@@ -42,7 +42,7 @@ public class UserService {
             if(!ADMIN_TOKEN.equals(requestDto.getAdminToken())) {
                 apiResponse.setStatusCode(400);
                 apiResponse.setMessage("관리자 암호를 다시 입력해주세요.");
-                return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
             }
             role = UserRoleEnum.ADMIN;
         }
@@ -52,6 +52,6 @@ public class UserService {
         userRepository.save(user);
         apiResponse.setMessage("회원가입 성공!!");
 
-        return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.OK);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 }

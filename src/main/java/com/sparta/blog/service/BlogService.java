@@ -53,7 +53,7 @@ public class BlogService {
         
         blogRepository.delete(blog);
         apiResponse.setMessage("삭제 완료!!");
-        return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.OK);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     private Blog findBlog(Long id){
