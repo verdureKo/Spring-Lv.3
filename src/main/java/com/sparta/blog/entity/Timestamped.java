@@ -12,15 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Timestamped {
+public abstract class Timestamped { // 추상 클래스
 
-    @CreatedDate    // @Column @Temporal 옵션이 여기에 포함되어 있었음
-//    @Column(updatable = false)
-//    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate    // @Column(updatable = false), @Temporal(TemporalType.TIMESTAMP) 옵션이 해당 에노테이션으로 처리 됨
     private LocalDateTime createdAt;
 
-    @LastModifiedDate    // @Column @Temporal 옵션이 여기에 포함되어 있었음
-//    @Column
-//    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate   // @Column, @Temporal(TemporalType.TIMESTAMP) 옵션이 해당 에노테이션으로 처리 됨
     private LocalDateTime modifiedAt;
 }

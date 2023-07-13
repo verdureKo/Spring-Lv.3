@@ -9,7 +9,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="comments")  // Entity에 네임부여해도 되는지 궁금 mappedBy만 잘하면 됩니까?
+@Table(name="comments")
 @NoArgsConstructor
 public class Comment extends Timestamped{   // Timestamped 상속받도록 함
     @Id

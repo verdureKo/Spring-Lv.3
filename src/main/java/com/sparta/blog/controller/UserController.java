@@ -29,7 +29,7 @@ public class UserController {
     public ResponseEntity<ApiResponse> signup(@RequestBody @Valid UserRequestDto.SignupRequestDto requestDto, BindingResult bindingResult) {
         ApiResponse apiResponse = new ApiResponse();
 
-        // Validation 예외처리
+        // 유효성 검사 결과에서 발생한 필드 에러들을 가져온다.
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         if(fieldErrors.size() > 0) {
             for (FieldError fieldError : bindingResult.getFieldErrors()) {

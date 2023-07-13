@@ -53,11 +53,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         log.info("로그인 성공!!");
         response.setStatus(200);
         response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8"); // UTF-8 설정 추가
+        response.setCharacterEncoding("UTF-8");
+
+        ApiResponse apiResponse = new ApiResponse(200, "로그인 성공!!");
         try {
-            String json = new ObjectMapper().writeValueAsString(new ApiResponse(200, "로그인 성공!!"));
-            response.getWriter().write(json);
-        } catch (Exception e) {
+            String jsonResponse = new ObjectMapper().writeValueAsString(apiResponse);
+            response.getWriter().write(jsonResponse);
+        } catch (IOException e) {
             log.error(e.getMessage());
         }
     }
@@ -67,11 +69,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         log.info("로그인 실패!!");
         response.setStatus(400);
         response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8"); // UTF-8 설정 추가
+        response.setCharacterEncoding("UTF-8");
+
+        ApiResponse apiResponse = new ApiResponse(400, "회원을 찾을 수 없습니다.");
         try {
-            String json = new ObjectMapper().writeValueAsString(new ApiResponse(400, "회원을 찾을 수 없습니다."));
-            response.getWriter().write(json);
-        } catch (Exception e) {
+            String jsonResponse = new ObjectMapper().writeValueAsString(apiResponse);
+            response.getWriter().write(jsonResponse);
+        } catch (IOException e) {
             log.error(e.getMessage());
         }
     }
