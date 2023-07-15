@@ -1,19 +1,17 @@
 # SPRING.V3
+
 "회원가입, 로그인 기능이 추가된 나만의 블로그 백엔드 서버 만들기"
-
----
-
-ERD
-
-<img src="asset/erd.PNG" width="450" alt="ERD" align="center">
-
-API 명세서
-
-<img src="asset/api.PNG" width="450" alt="api">
 
 [Notion 바로가기](https://verdureko.notion.site/Spring-Lv-3-0537254d110045168777e91cd61ee814)
 
----
+## ERD
+
+<img src="asset/erd.PNG" width="450" alt="ERD" align="center">
+
+## API 명세서
+
+<img src="asset/api.PNG" width="450" alt="api">
+
 
 1. API 명세서 설계의 중요성
 
