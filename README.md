@@ -5,7 +5,7 @@
 
 ERD
 
-<img src="asset/ERD.PNG" width="450" alt="ERD" align="center">
+<img src="asset/erd.PNG" width="450" alt="ERD" align="center">
 
 API 명세서
 
