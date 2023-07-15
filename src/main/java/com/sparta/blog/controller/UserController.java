@@ -27,9 +27,9 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> signup(@RequestBody @Valid UserRequestDto.SignupRequestDto requestDto, BindingResult bindingResult) {
-        ApiResponse apiResponse = new ApiResponse();
+        ApiResponse apiResponse = new ApiResponse(200, "회원가입 성공!!");
 
-        // 유효성 검사 결과에서 발생한 필드 에러들을 가져온다.
+        // @Valid 유효성 검사 결과에서 발생한 필드 에러들을 가져온다.
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         if(fieldErrors.size() > 0) {
             for (FieldError fieldError : bindingResult.getFieldErrors()) {

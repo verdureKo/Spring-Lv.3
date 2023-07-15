@@ -19,11 +19,13 @@ public class Comment extends Timestamped{   // Timestamped 상속받도록 함
     @Column(nullable = false)
     private String comment;
 
-    @ManyToOne
+    // User 컬럼도 필요시에만 로딩하도록 지연로딩
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
+    // Blog 컬럼도 필요시에만 로딩하도록 지연로딩
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "blog_id", nullable = false)
     private Blog blog;
 

@@ -37,7 +37,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
         if (StringUtils.hasText(tokenValue)) {
             if (!jwtUtil.validateToken(tokenValue)) {
-                jwtExceptionHandler(res, "Token Error", HttpStatus.UNAUTHORIZED.value());
+                jwtExceptionHandler(res, "토큰이 유효하지 않습니다.", HttpStatus.BAD_REQUEST.value());
                 return;
             }
 
@@ -47,6 +47,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 setAuthentication(info.getSubject());
             } catch (Exception e) {
                 log.error(e.getMessage());
+                res.setContentType("application/json");
+                req.setCharacterEncoding("UTF-8");
                 return;
             }
         }
@@ -64,13 +66,17 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 
-    public void jwtExceptionHandler(HttpServletResponse response, String message, int statusCode) {
+    protected void jwtExceptionHandler(HttpServletResponse response, String message, int statusCode) {
+        log.info("작성자만 삭제/수정할 수 있습니다.");
         response.setStatus(statusCode);
         response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        ApiResponse apiResponse = new ApiResponse(400, "작성자만 삭제/수정할 수 있습니다.");
         try {
-            String json = new ObjectMapper().writeValueAsString(new ApiResponse(statusCode, message));
+            String json = new ObjectMapper().writeValueAsString(apiResponse);
             response.getWriter().write(json);
-        } catch (Exception e) {
+        } catch (IOException e) {
             log.error(e.getMessage());
         }
     }

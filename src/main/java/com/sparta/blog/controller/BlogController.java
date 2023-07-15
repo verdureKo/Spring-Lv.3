@@ -25,9 +25,9 @@ public class BlogController {
         return blogService.getBlogs();
     }
 
-    @GetMapping("/logs/{id}")       // 튜터님 피드백: 메소드명으로 선택조회를 유추할 수 있음, API URL convention에 따라 복수 사용
-    public BlogResponseDto.DetailsResponseDto getBlog(@PathVariable Long id){
-        return blogService.getBlog(id);
+    @GetMapping("/logs/{boardId}")       // 튜터님 피드백: 메소드명으로 선택조회를 유추할 수 있음, API URL convention에 따라 복수 사용
+    public BlogResponseDto.DetailsResponseDto getBlog(@PathVariable Long boardId){
+        return blogService.getBlog(boardId);
     }
 
     @PostMapping("/logs")
@@ -36,17 +36,17 @@ public class BlogController {
     }
 
 
-    @PutMapping("/logs/{id}")
+    @PutMapping("/logs/{boardId}")
     public BlogResponseDto.DetailsResponseDto updateBlog(
-            @PathVariable Long id, @RequestBody BlogRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails)
+            @PathVariable Long boardId, @RequestBody BlogRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails)
     {
-        return blogService.updateBlog(id, requestDto, userDetails.getUser());
+        return blogService.updateBlog(boardId, requestDto, userDetails.getUser());
     }
 
-    @DeleteMapping("/logs/{id}")
+    @DeleteMapping("/logs/{boardId}")
     public ApiResponse deleteBlog(
-            @PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails)
+            @PathVariable Long boardId, @AuthenticationPrincipal UserDetailsImpl userDetails)
     {
-        return blogService.deleteBlog(id, userDetails.getUser());
+        return blogService.deleteBlog(boardId, userDetails.getUser());
     }
 }

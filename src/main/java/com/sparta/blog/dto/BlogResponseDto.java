@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 // @JsonInclude(JsonInclude.NON_NULL) null값이 아닌 것만 반환해서 주석
 public class BlogResponseDto {
 // 클래스 내부에는 두 개의 중첩 클래스를 만든 이유는 클라이언트가 한 번의 요청으로
-// 블로그의 상세 정보와 댓글 목록을 한꺼번에 받을 수 있게 하기 위함이다.
+// 블로그의 상세 정보와 댓글 목록을 한꺼번에 받을 수 있게 하기 위함
     @Getter
     public static class ResponseDto {
         private Long id;

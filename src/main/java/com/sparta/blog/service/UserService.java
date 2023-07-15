@@ -29,17 +29,17 @@ public class UserService {
             return ResponseEntity.badRequest().body(apiResponse);
         }
 
-        // 관리자 암호 확인
+        // Token 확인
         UserRoleEnum role = UserRoleEnum.USER;
         if (requestDto.isAdmin()) {
             if (!ADMIN_TOKEN.equals(requestDto.getAdminToken())) {
-                ApiResponse apiResponse = new ApiResponse(400, "관리자 암호를 다시 입력해주세요.");
+                ApiResponse apiResponse = new ApiResponse(400, "토큰이 유효하지 않습니다.");
                 return ResponseEntity.badRequest().body(apiResponse);
             }
             role = UserRoleEnum.ADMIN;
         }
 
-        // 사용자 등록
+        // 회원 저장
         User user = new User(username, password, role);
         userRepository.save(user);
         ApiResponse apiResponse = new ApiResponse(200, "회원가입 성공!!");

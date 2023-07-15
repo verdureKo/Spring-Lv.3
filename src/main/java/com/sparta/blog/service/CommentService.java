@@ -25,6 +25,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final BlogRepository blogRepository;
 
+    @Transactional
     public CommentResponseDto createComment(Long id, CommentRequestDto requestDto, User user) {
         Blog blog = findBlog(id);
         Comment comment = commentRepository.save(new Comment(requestDto, user, blog));

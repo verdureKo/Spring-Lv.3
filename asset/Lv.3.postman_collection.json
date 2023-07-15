@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "b1bad33f-a24b-4cb1-b8a6-15feb5b7a763",
+		"name": "Lv.3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27929090"
+	},
+	"item": [
+		{
+			"name": "글 전체 조회",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZmgxMjM0NSIsImF1dGgiOiVSIiwiZXhwIjoxNjg5MzU1NTUxLCJpYXQiOjE2ODkzNTE5NTF9.xhSRASxBbRXkbjm-8F7g8vYbaSkNwjZxXO2kO4iXYBI",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/api/logs"
+			},
+			"response": []
+		},
+		{
+			"name": "글 선택 수정",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZxMjM0NSIsImF1dGgiOiJVU0VSIiwiZXhwIjoxNjg5MzU1NTUxLCJpYXQiOjE2ODkzNTE5NTF9.xhSRASxBbRXkbjm-8F7g8vYbaSkNwjZxXO2kO4iXYBI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"제목2\",\r\n    \"content\": \"내용2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/logs/7"
+			},
+			"response": []
+		},
+		{
+			"name": "글 선택 삭제",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZmgxMjM0NSIsImF1dGgiOiJVU0VSIiwiZXhwIjoxNjg5MzU1NTUxLCJpYXQiOjE2ODkzNTE5NTF9.xhSRASxBbRXkbjm-8F7g8vYbaSkNwjZxXO2kO4iXYBI",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/api/logs/5"
+			},
+			"response": []
+		},
+		{
+			"name": "글 쓰기",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZmgxMjM0NSIsImF1dGgiOiJVU0VSIiwiZXhwIjoxNjg5MzU1NTUxLCJpYXQiOjE2ODkzNTE5NTF9.xhSRASxBbRbjm-8F7g8vYbaSkNwjZxXO2kO4iXYBI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"제목\",\r\n    \"content\": \"내용\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/logs"
+			},
+			"response": []
+		},
+		{
+			"name": "로그인",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer%20eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMSIsImV4cCI6MTY4ODYyNzY2MiwiaWF0IjoxNjg4NjI0MDYyfQ.g9ZZeojgYrS72W_x3zemdIrqw5-0WX-45v1MbkRqdM8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"gfh12345\",\r\n    \"password\": \"Ggg@12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "회원가입",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer%20eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMSIsImV4cCI6MTY4ODYyNzY2MiwiaWF0IjoxNjg4NjI0MDYyfQ.g9ZZeojgYrS72W_x3zemdIrqw5-0WX-45v1MbkRqdM8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"gfh12345\",\r\n    \"password\": \"Ggg@12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/auth/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "댓글 쓰기",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZmgxMjM0NSIsImF1dGiJVU0VSIiwiZXhwIjoxNjg5MzU1NTUxLCJpYXQiOjE2ODkzNTE5NTF9.xhSRASxBbRXkbjm-8F7g8vYbaSkNwjZxXO2kO4iXYBI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"댓글\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/logs/7/comments"
+			},
+			"response": []
+		},
+		{
+			"name": "댓글 수정",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZmgxMjM0NSIsImF1dVU0VSIiwiZXhwIjoxNjg5MzU1NTUxLCJpYXQiOjE2ODkzNTE5NTF9.xhSRASxBbRXkbjm-8F7g8vYbaSkNwjZxXO2kO4iXYBI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"댓글수정\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/logs/comments/13"
+			},
+			"response": []
+		},
+		{
+			"name": "댓글 선택 삭제",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJnZmgxMjM0NSIsImFiJVU0VSIiwiZXhwIjoxNjg5MzU1NTUxLCJpYXQiOjE2ODkzNTE5NTF9.xhSRASxBbRXkbjm-8F7g8vYbaSkNwjZxXO2kO4iXYBI",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/api/logs/comments/14"
+			},
+			"response": []
+		},
+		{
+			"name": "글 선택 삭제",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmMxMjM0NSIsImF1dGgiOiJVU0VSIiwiZXhwIjoxNjg5Mjc4MDE1LCJpYXQiOjE2ODkyNzQ0MTV9.4mdsGdfuz7V8yDYIVhNcMMw5YleZMEuB_Q07iB3pbuI",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:8080/api/logs/9"
+			},
+			"response": []
+		}
+	]
+}
